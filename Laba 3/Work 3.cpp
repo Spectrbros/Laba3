@@ -5,28 +5,28 @@
 
 using namespace std;
 
-//Цвета текста
+//Р¦РІРµС‚Р° С‚РµРєСЃС‚Р°
 #define RESET   "\033[0m"
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
 #define BLUE    "\033[34m"
 
 
-//Объявление переменных
+//РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С…
 HANDLE hStdout;
 COORD destCoord;
 
-const int matrix_order = 6; //можно изменить порядок на чётное число
+const int matrix_order = 6; //РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ РїРѕСЂСЏРґРѕРє РЅР° С‡С‘С‚РЅРѕРµ С‡РёСЃР»Рѕ
 const int num_count = matrix_order * matrix_order;
 const int block_size = matrix_order / 2;
 int matrix[matrix_order][matrix_order];
 
 
-//Прототипы функций
+//РџСЂРѕС‚РѕС‚РёРїС‹ С„СѓРЅРєС†РёР№
 int menu_commands(int choice);
 
 
-//Функции
+//Р¤СѓРЅРєС†РёРё
 void separation() {
 	cout << "\n";
 }
@@ -34,7 +34,7 @@ void separation() {
 void waiting() {
 	separation();
 	separation();
-	cout << RED << "Нажмите Enter для продолжения..." << RESET << endl;
+	cout << RED << "РќР°Р¶РјРёС‚Рµ Enter РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ..." << RESET << endl;
 	cin.ignore();
 	cin.get();
 }
@@ -48,7 +48,7 @@ void clear_matrix() {
 	for (int* p = *matrix; p <= end; p++) {
 		*p = 0;
 	}
-	cout << GREEN << "Матрица успешно очищена!" << RESET << endl;
+	cout << GREEN << "РњР°С‚СЂРёС†Р° СѓСЃРїРµС€РЅРѕ РѕС‡РёС‰РµРЅР°!" << RESET << endl;
 }
 
 int get_random_num() {
@@ -90,7 +90,7 @@ void spiral_fill_matrix() {
 	int* down = p + (matrix_order * matrix_order - 1);
 	int* end = p + (matrix_order * (matrix_order / 2) + (matrix_order / 2 - 1));
 
-	*p = get_random_num(); // 1 элемент матрицы
+	*p = get_random_num(); // 1 СЌР»РµРјРµРЅС‚ РјР°С‚СЂРёС†С‹
 	console_output(p);
 	while (true) {
 		while (p < right) {
@@ -179,26 +179,26 @@ void matrix_sort() {
 }
 
 void matrix_sort_menu() {
-	cout << GREEN << "Матрица успешно отсортирована!" << RESET << endl;
+	cout << GREEN << "РњР°С‚СЂРёС†Р° СѓСЃРїРµС€РЅРѕ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅР°!" << RESET << endl;
 	separation();
-	cout << RED << "Матрица до сортировки:" << RESET << endl;
+	cout << RED << "РњР°С‚СЂРёС†Р° РґРѕ СЃРѕСЂС‚РёСЂРѕРІРєРё:" << RESET << endl;
 	matrix_output();
 	separation();
-	cout << RED << "Матрица после сортировки:" << RESET << endl;
+	cout << RED << "РњР°С‚СЂРёС†Р° РїРѕСЃР»Рµ СЃРѕСЂС‚РёСЂРѕРІРєРё:" << RESET << endl;
 	matrix_sort();
 	matrix_output();
 }
 
 void second_page() {
-	cout << RED << "Выберите способ заполнения матрицы:" << RESET << endl;
-	cout << GREEN << "1) Спиральный (а)" << RESET << endl;
-	cout << GREEN << "2) Зигзагообразный (б)" << RESET << endl;
+	cout << RED << "Р’С‹Р±РµСЂРёС‚Рµ СЃРїРѕСЃРѕР± Р·Р°РїРѕР»РЅРµРЅРёСЏ РјР°С‚СЂРёС†С‹:" << RESET << endl;
+	cout << GREEN << "1) РЎРїРёСЂР°Р»СЊРЅС‹Р№ (Р°)" << RESET << endl;
+	cout << GREEN << "2) Р—РёРіР·Р°РіРѕРѕР±СЂР°Р·РЅС‹Р№ (Р±)" << RESET << endl;
 	cout << endl;
-	cout << RED << "Выбор: " << RESET;
+	cout << RED << "Р’С‹Р±РѕСЂ: " << RESET;
 	int second_page_choice;
 	cin >> second_page_choice;
 	clear_screen();
-	cout << GREEN << "Заполнение матрицы: " << RESET << endl;
+	cout << GREEN << "Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†С‹: " << RESET << endl;
 	cout << BLUE;
 	switch (second_page_choice) {
 	case 1:
@@ -247,56 +247,56 @@ void divide_elements(int& value) {
 }
 
 void elements_operations_menu() {
-	cout << RED << "Матрица до изменений:" << RESET << endl;
+	cout << RED << "РњР°С‚СЂРёС†Р° РґРѕ РёР·РјРµРЅРµРЅРёР№:" << RESET << endl;
 	matrix_output();
 	separation();
 	separation();
-	cout << RED << "Выберите операцию над элементами матрицы:" << RESET << endl;
-	cout << GREEN << "1) Уменьшить" << RESET << endl;
-	cout << GREEN << "2) Увеличить" << RESET << endl;
-	cout << GREEN << "3) Умножить" << RESET << endl;
-	cout << GREEN << "4) Поделить" << RESET << endl;
-	cout << RED << "Выбор: " << RESET;
+	cout << RED << "Р’С‹Р±РµСЂРёС‚Рµ РѕРїРµСЂР°С†РёСЋ РЅР°Рґ СЌР»РµРјРµРЅС‚Р°РјРё РјР°С‚СЂРёС†С‹:" << RESET << endl;
+	cout << GREEN << "1) РЈРјРµРЅСЊС€РёС‚СЊ" << RESET << endl;
+	cout << GREEN << "2) РЈРІРµР»РёС‡РёС‚СЊ" << RESET << endl;
+	cout << GREEN << "3) РЈРјРЅРѕР¶РёС‚СЊ" << RESET << endl;
+	cout << GREEN << "4) РџРѕРґРµР»РёС‚СЊ" << RESET << endl;
+	cout << RED << "Р’С‹Р±РѕСЂ: " << RESET;
 	int user_choice;
 	int value;
 	cin >> user_choice;
 	separation();
 	switch (user_choice) {
 	case 1:
-		cout << RED << "Уменьшить элементы на: " << RESET;
+		cout << RED << "РЈРјРµРЅСЊС€РёС‚СЊ СЌР»РµРјРµРЅС‚С‹ РЅР°: " << RESET;
 		cin >> value;
 		reduce_elements(value);
 		break;
 	case 2:
-		cout << RED << "Увеличить элементы на: " << RESET;
+		cout << RED << "РЈРІРµР»РёС‡РёС‚СЊ СЌР»РµРјРµРЅС‚С‹ РЅР°: " << RESET;
 		cin >> value;
 		increase_elements(value);
 		break;
 	case 3:
-		cout << RED << "Умножить элементы на: " << RESET;
+		cout << RED << "РЈРјРЅРѕР¶РёС‚СЊ СЌР»РµРјРµРЅС‚С‹ РЅР°: " << RESET;
 		cin >> value;
 		multiply_elements(value);
 		break;
 	case 4:
-		cout << RED << "Поделить элементы на: " << RESET;
+		cout << RED << "РџРѕРґРµР»РёС‚СЊ СЌР»РµРјРµРЅС‚С‹ РЅР°: " << RESET;
 		cin >> value;
 		divide_elements(value);
 		break;
 	}
 	separation();
-	cout << RED << "Матрица после изменений:" << RESET << endl;
+	cout << RED << "РњР°С‚СЂРёС†Р° РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёР№:" << RESET << endl;
 	matrix_output();
 }
 
 void column_permutation() {
-	cout << RED << "Матрица со случайными числами (от 1 до 100):" << RESET << endl;
+	cout << RED << "РњР°С‚СЂРёС†Р° СЃРѕ СЃР»СѓС‡Р°Р№РЅС‹РјРё С‡РёСЃР»Р°РјРё (РѕС‚ 1 РґРѕ 100):" << RESET << endl;
 	int* end = *matrix + (matrix_order * matrix_order) - 1;
 	for (int* p = *matrix; p <= end; ++p) {
 		*p = rand() % 100 + 1;
 	}
 	matrix_output();
 	Sleep(2500);
-	cout << GREEN << "Процесс перестановки: " << RESET << endl;
+	cout << GREEN << "РџСЂРѕС†РµСЃСЃ РїРµСЂРµСЃС‚Р°РЅРѕРІРєРё: " << RESET << endl;
 	int* p = *matrix;
 	for (int i = 0; i < matrix_order; ++i) {
 		separation();
@@ -305,7 +305,7 @@ void column_permutation() {
 		matrix_output();
 		Sleep(800);
 	}
-	cout << RED << "Матрица после перестановки первого и последнего столбца:" << RESET << endl;
+	cout << RED << "РњР°С‚СЂРёС†Р° РїРѕСЃР»Рµ РїРµСЂРµСЃС‚Р°РЅРѕРІРєРё РїРµСЂРІРѕРіРѕ Рё РїРѕСЃР»РµРґРЅРµРіРѕ СЃС‚РѕР»Р±С†Р°:" << RESET << endl;
 	matrix_output();
 }
 
@@ -329,16 +329,16 @@ void blocks_permutations(int* block_a, int* block_b) {
 }
 
 void matrix_permutations_menu() {
-	cout << RED << "Матрица до изменений:" << RESET << endl;
+	cout << RED << "РњР°С‚СЂРёС†Р° РґРѕ РёР·РјРµРЅРµРЅРёР№:" << RESET << endl;
 	matrix_output();
 	separation();
 	separation();
-	cout << RED << "Выберите вид перестановки:" << RESET << endl;
-	cout << GREEN << "1) Циклическая (a)" << RESET << endl;
-	cout << GREEN << "2) Диагональная (b)" << RESET << endl;
-	cout << GREEN << "3) Вертикальная (c)" << RESET << endl;
-	cout << GREEN << "4) Горизонтальная (d)" << RESET << endl;
-	cout << RED << "Выбор: " << RESET;
+	cout << RED << "Р’С‹Р±РµСЂРёС‚Рµ РІРёРґ РїРµСЂРµСЃС‚Р°РЅРѕРІРєРё:" << RESET << endl;
+	cout << GREEN << "1) Р¦РёРєР»РёС‡РµСЃРєР°СЏ (a)" << RESET << endl;
+	cout << GREEN << "2) Р”РёР°РіРѕРЅР°Р»СЊРЅР°СЏ (b)" << RESET << endl;
+	cout << GREEN << "3) Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ (c)" << RESET << endl;
+	cout << GREEN << "4) Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ (d)" << RESET << endl;
+	cout << RED << "Р’С‹Р±РѕСЂ: " << RESET;
 	int user_choice;
 	cin >> user_choice;
 
@@ -369,12 +369,12 @@ void matrix_permutations_menu() {
 		break;
 	}
 	separation();
-	cout << RED << "Матрица после изменений:" << RESET << endl;
+	cout << RED << "РњР°С‚СЂРёС†Р° РїРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёР№:" << RESET << endl;
 	matrix_output();
 }
 
 void command_choice() {
-	cout << RED << "Введите номер команды: " << RESET;
+	cout << RED << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РєРѕРјР°РЅРґС‹: " << RESET;
 	int user_choice;
 	cin >> user_choice;
 	separation();
@@ -412,7 +412,7 @@ int menu_commands(int choice) {
 		break;
 	case 6:
 		clear_screen();
-		cout << RED << "Текущая матрица:" << RESET << endl;
+		cout << RED << "РўРµРєСѓС‰Р°СЏ РјР°С‚СЂРёС†Р°:" << RESET << endl;
 		matrix_output();
 		waiting();
 		return 0;
@@ -423,7 +423,7 @@ int menu_commands(int choice) {
 		return 0;
 		break;
 	default:
-		cout << RED << "Ошибка! Введите номер команды от 1 до 7\n" << RESET << endl;
+		cout << RED << "РћС€РёР±РєР°! Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РєРѕРјР°РЅРґС‹ РѕС‚ 1 РґРѕ 7\n" << RESET << endl;
 		command_choice();
 		break;
 	}
@@ -431,18 +431,18 @@ int menu_commands(int choice) {
 
 void lab_page() {
 	cout << "|=======================================================|" << endl;
-	cout << "|                 " << BLUE << "Лабораторная работа 3" << RESET << "                 |" << endl;
+	cout << "|                 " << BLUE << "Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° 3" << RESET << "                 |" << endl;
 	cout << "|=======================================================|" << endl;
-	cout << "| " << GREEN << "1) Заполнение матрицы по схемам" << RESET << "                       |" << endl;
-	cout << "| " << GREEN << "2) Создать новую матрицу с помощью перестановок" << RESET << "       |" << endl;
-	cout << "| " << GREEN << "3) Отсортировать матрицу" << RESET << "                              |" << endl;
-	cout << "| " << GREEN << "4) Операции над элементами матрицы" << RESET << "                    |" << endl;
-	cout << "| " << GREEN << "5) Перестановка столбцов (ИДЗ)" << RESET << "                        |" << endl;
+	cout << "| " << GREEN << "1) Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†С‹ РїРѕ СЃС…РµРјР°Рј" << RESET << "                       |" << endl;
+	cout << "| " << GREEN << "2) РЎРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ РјР°С‚СЂРёС†Сѓ СЃ РїРѕРјРѕС‰СЊСЋ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє" << RESET << "       |" << endl;
+	cout << "| " << GREEN << "3) РћС‚СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ РјР°С‚СЂРёС†Сѓ" << RESET << "                              |" << endl;
+	cout << "| " << GREEN << "4) РћРїРµСЂР°С†РёРё РЅР°Рґ СЌР»РµРјРµРЅС‚Р°РјРё РјР°С‚СЂРёС†С‹" << RESET << "                    |" << endl;
+	cout << "| " << GREEN << "5) РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° СЃС‚РѕР»Р±С†РѕРІ (РР”Р—)" << RESET << "                        |" << endl;
 	cout << "|                                                       |" << endl;
-	cout << "| " << RED << "6) Вывести текущую матрицу" << RESET << "                            |" << endl;
-	cout << "| " << RED << "7) Очистить матрицу" << RESET << "                                   |" << endl;
+	cout << "| " << RED << "6) Р’С‹РІРµСЃС‚Рё С‚РµРєСѓС‰СѓСЋ РјР°С‚СЂРёС†Сѓ" << RESET << "                            |" << endl;
+	cout << "| " << RED << "7) РћС‡РёСЃС‚РёС‚СЊ РјР°С‚СЂРёС†Сѓ" << RESET << "                                   |" << endl;
 	cout << "|=======================================================|" << endl;
-	cout << "|                 " << BLUE << "Лабораторная работа 3" << RESET << "                 |" << endl;
+	cout << "|                 " << BLUE << "Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° 3" << RESET << "                 |" << endl;
 	cout << "|=======================================================|" << endl;
 	cout << endl;
 }
